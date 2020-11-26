@@ -2,6 +2,6 @@ FROM alpine
 
 LABEL maintainer="Rafael Berger" \
       name="hello-world-example" \
-      version="0.1"
+      version="1.0"
 
 CMD ["echo", "Hello World auto builded"]
