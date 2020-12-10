@@ -51,6 +51,7 @@ get_date:
             variable: NOW
 ```
 Der Job **get_date** ist für das ermitteln von dem aktuellen Datum und wird in der Variable `NOW` für die anderen Jobs gespeichert. **get_date** ist jedoch optional. In diesem Tutorial wird es verwendet um den tags der Docker Images das jeweilige Erstellungsdatum hinzuzufügen.
+Die Jobs **build_arm_image** und **build_amd64_image** sind für die beiden unterschiedlichen Prozessorarchitekturen. 
 ### Zeile 41-45 und 68-72
 ```yaml
 - name: Login to DockerHub
@@ -105,10 +106,13 @@ repository: wagoautomation/hello-world
 Unter **repository** muss das eigene Docker Hub Repository angegeben werden, wo die README hochgeladen werden soll.
 ## Schritt 6 - Automatisierte bauen und hochladen
 Nachdem die Schritte 1-4 befolgt und alle Dateien in das GitHub Repository hochgeladen worden sind, beginnt GitHub das Docker Image zu bauen und auf Docker Hub hochzuladen. Solange GitHub arbeitet, wird ein gelber Kreis angezeigt.
-![GitHub Bearbeitung](/screenshots/In_Bearbeitung_gross_rot.png?raw=true "In Bearbeitung")
+![GitHub Bearbeitung](/screenshots/In_Bearbeitung_gross_rot.png?raw=true "GitHub In Bearbeitung")
 
 Den aktuellen Zwischenstand der einzelnen Images kann per klick auf den Kreis angezeigt werden.
-![GitHub Zwischenstand](/screenshots/Zwischenstand.png?raw=true "Aktueller Zwischenstand")
+![GitHub Zwischenstand](/screenshots/Zwischenstand.png?raw=true "GitHub Aktueller Zwischenstand")
 
 Sobald alle Schritte abgearbeitet und abgeschlossen sind, wird dies mit einen grünen Haken gekennzeichnet.
-![GitHub Abgeschlossen](/screenshots/Abgeschlossen_rot.png?raw=true "Abgeschlossen")
+![GitHub Abgeschlossen](/screenshots/Abgeschlossen_rot.png?raw=true "GitHub Abgeschlossen")
+
+Wenn das hochladen der images auf Docker Hub ebenfalls erfolgreich waren sieht es wie folgt aus.
+![Docker Hub Abgeschlossen](/screenshots/DockerHub_Abgeschlossen.png?raw=true "Docker Abgeschlossen")
