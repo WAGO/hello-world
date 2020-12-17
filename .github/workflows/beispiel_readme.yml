@@ -7,7 +7,7 @@ on:
       - main
     paths:
       - README.md
-      - .github/workflows/dockerhub-description.yml
+      - .github/workflows/beispiel_readme.yml
 
 jobs:
   dockerHubDescription:

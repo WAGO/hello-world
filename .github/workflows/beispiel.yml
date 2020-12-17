@@ -7,7 +7,7 @@ on:
       - main
     paths:
       - "build-context/*"
-      - ".github/workflows/dockerimage.yml"
+      - ".github/workflows/beispiel.yml"
 
 jobs:
   get_date:
