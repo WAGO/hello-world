@@ -1,4 +1,4 @@
-# Tutorial zum automatisierten bauen und hochladen von Docker Images nach Docker Hub
+# Anleitung zum automatisierten bauen und hochladen von Docker Images nach Docker Hub
 
 ## Schritt 1 - GitHub Repository anlegen
 Als erstes muss ein GitHub Repository angelegt werden, welches die entsprechenden Dateien wie das Dockerfile beinhaltet und die jeweiligen Skripte für das bauen und hochladen der Docker Images.
@@ -11,7 +11,7 @@ Dies geht entweder direkt beim erstellen des Repositories, nach dem erstellen de
 Wenn noch kein GitHub Account verbunden wurde, dann sieht es wie folgt aus.
 ![DockerHub GitHub Account verbinden](/screenshots/DockerHub_Connect2.png?raw=true "GitHub Account verbinden")
 
-Dort einfach auf **Connect** klicken und allen weiteren Anweisungen folgen. Wenn alles geklappt hat, dann steht unter Account der angegebene Benutzer.
+Dort auf **Connect** klicken und allen weiteren Anweisungen folgen. Wenn alles geklappt hat, dann steht unter Account der angegebene Benutzer.
 Nun ist das DockerHub Repository mit dem gewünschten GitHub Account verbunden.
 
 ## Schritt 3 - Dockerfile erstellen
@@ -49,9 +49,21 @@ get_date:
         with:
             data: ${{ steps.time.outputs.time }}
             variable: NOW
+
+build_arm_image:
+    needs: [get_date]
+    runs-on: ubuntu-latest
+    steps:
+    ...
+
+build_amd64_image:
+    needs: [get_date]
+    runs-on: ubuntu-latest
+    steps:
+    ...
 ```
 Der Job **get_date** ist für das ermitteln von dem aktuellen Datum und wird in der Variable `NOW` für die anderen Jobs gespeichert. **get_date** ist jedoch optional. In diesem Tutorial wird es verwendet um den tags der Docker Images das jeweilige Erstellungsdatum hinzuzufügen.
-Die Jobs **build_arm_image** und **build_amd64_image** sind für die beiden unterschiedlichen Prozessorarchitekturen. 
+Die Jobs **build_arm_image** und **build_amd64_image** sind dafür da um die Images für die beiden unterschiedlichen Prozessorarchitekturen zu bauen. 
 ### Zeile 41-45 und 68-72
 ```yaml
 - name: Login to DockerHub
@@ -80,11 +92,11 @@ Unter `context` muss der jeweilige Ordner, wo die verwendeten Dockerfile Dateien
     docker manifest create wagoautomation/hello-world:latest wagoautomation/hello-world:amd64-${{ steps.global-data.outputs.NOW }} wagoautomation/hello-world:arm32v7-${{ steps.global-data.outputs.NOW }}
     docker manifest push wagoautomation/hello-world:latest
 ```
-Hier werden die Docker Images erstellt und nach Docker Hub hochgeladen. Dementsprechend müssen nur die eigenen Repositories mit den eigenen tags anstelle von `wagoautomation/hello-world:${{ steps.global-data.outputs.NOW }}` ausgetauscht werden.
+Hier werden die Docker Images erstellt und nach Docker Hub hochgeladen. Dafür wird jeweils nach dem create und dem push der Pfad zum eigenen Repository auf Docker Hub angegeben gefolgt von einem Doppelpunkt und den tag für das jeweilige Docker Image.
 
 ## Schritt 5 - Skript für das hochladen der README.md
-Genau wie in [Schritt 4](#schritt-4) muss das Skript unter dem Pfad `.github/workflows` abgelegt werden. Der Name ist ebenfalls frei zu wählen. In diesem Tutorial heißt es `dockerhub-description.yml`. Der Aufbau von diesem Skript ähnelt dem für das bauen und hochladen der Docker Images aus [Schritt 4](#schritt-4).
-Es müssen nur einzelne Zeilen bearbeitet werden.
+Genau wie in [Schritt 4](#schritt-4) muss das Skript unter dem Pfad `.github/workflows` abgelegt werden. Der Name ist ebenfalls frei zu wählen. In dieser Anleitung trägt es den Namen `dockerhub-description.yml`. Der Aufbau von diesem Skript ähnelt dem für das bauen und hochladen der Docker Images aus [Schritt 4](#schritt-4).
+Deswegen müssen auch hier nur einzelne Zeilen bearbeitet werden.
 ### Zeile 1
 ```yaml
 name: Update Docker Hub Description
@@ -98,17 +110,17 @@ paths:
     - README.md
     - .github/workflows/dockerhub-description.yml
 ```
-Hier wird genau wie in [Schritt 4](#schritt-4) der Branch und die jeweiligen Dateien angegeben, die GitHub nach Änderungen kontrollieren soll. In diesem Fall die `README.md` und das aktuelle Skript. Sobald eine der beiden Dateien sich verändert, dann wird die `README.md` neu nach Docker Hub hochgeladen.
+Hier wird genau wie in [Schritt 4](#schritt-4) der Branch und die jeweiligen Dateien angegeben, die GitHub nach Änderungen kontrollieren soll. In diesem Fall die `README.md` und das aktuelle Skript. Sobald eine der beiden Dateien sich verändert, wird die `README.md` neu nach Docker Hub hochgeladen.
 ### Zeile 23
 ```yaml
 repository: wagoautomation/hello-world
 ```
 Unter **repository** muss das eigene Docker Hub Repository angegeben werden, wo die README hochgeladen werden soll.
 ## Schritt 6 - Automatisierte bauen und hochladen
-Nachdem die Schritte 1-4 befolgt und alle Dateien in das GitHub Repository hochgeladen worden sind, beginnt GitHub das Docker Image zu bauen und auf Docker Hub hochzuladen. Solange GitHub arbeitet, wird ein gelber Kreis angezeigt.
+Nachdem die Schritte 1-4 befolgt und alle Dateien in das GitHub Repository hochgeladen worden sind, beginnt GitHub das Docker Image zu bauen und auf Docker Hub hochzuladen. Solange GitHub arbeitet, wird ein gelber Punkt angezeigt.
 ![GitHub Bearbeitung](/screenshots/In_Bearbeitung_gross_rot.png?raw=true "GitHub In Bearbeitung")
 
-Den aktuellen Zwischenstand der einzelnen Images kann per klick auf den Kreis angezeigt werden.
+Den aktuellen Zwischenstand der einzelnen Images kann per klick auf den Punkt angezeigt werden.
 ![GitHub Zwischenstand](/screenshots/Zwischenstand.png?raw=true "GitHub Aktueller Zwischenstand")
 
 Sobald alle Schritte abgearbeitet und abgeschlossen sind, wird dies mit einen grünen Haken gekennzeichnet.
