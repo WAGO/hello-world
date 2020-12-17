@@ -114,7 +114,7 @@ Unter **repository** muss das eigene Docker Hub Repository angegeben werden, wo 
 Nachdem die Schritte 1-5 befolgt und alle Dateien in das GitHub Repository hochgeladen worden sind, beginnt GitHub das Docker Image zu bauen und auf Docker Hub hochzuladen. Solange GitHub arbeitet, wird ein gelber Punkt angezeigt.
 ![GitHub Bearbeitung](/screenshots/GitHub_Action_In-Bearbeitung.png?raw=true "GitHub In Bearbeitung")
 
-Den aktuellen Zwischenstand der einzelnen Images kann per klick auf den Punkt angezeigt werden.
+Den aktuellen Zwischenstand der einzelnen Jobs aus dem Skript von [Schritt 4](#schritt-4---skript-für-das-bauen-und-hochladen-der-docker-images) kann per klick auf den Punkt angezeigt werden.
 ![GitHub Zwischenstand](/screenshots/GitHub_Action_Zwischenstand.png?raw=true "GitHub Aktueller Zwischenstand")
 
 Sobald alle Schritte abgearbeitet und abgeschlossen sind, wird dies mit einen grünen Haken gekennzeichnet.
