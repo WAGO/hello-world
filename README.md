@@ -23,7 +23,7 @@ Wichtig für diesen Schritt ist, dass dieses Skript genau unter dem Pfad `.githu
 ```yaml
 name: hello-world Beispiel
 ```
-Dort muss ein eigener Name angegeben werden
+Hier wird der Name für die Actions, die die Docker images baut und auf Docker Hub hochlädt, angegeben.
 ### Zeile 6-10
 ```yaml
 branches:
@@ -101,7 +101,7 @@ Deswegen müssen auch hier nur einzelne Zeilen bearbeitet werden.
 ```yaml
 name: Update Docker Hub Description
 ```
-Der Name kann verändert werden
+Hier wird der Name für die Action, die die `README.md` auf Docker Hub hochlädt, angegeben.
 ### Zeile 6-10
 ```yaml
 branches:
@@ -121,7 +121,7 @@ Nachdem die Schritte 1-4 befolgt und alle Dateien in das GitHub Repository hochg
 ![GitHub Bearbeitung](/screenshots/In_Bearbeitung_gross_rot.png?raw=true "GitHub In Bearbeitung")
 
 Den aktuellen Zwischenstand der einzelnen Images kann per klick auf den Punkt angezeigt werden.
-![GitHub Zwischenstand](/screenshots/Zwischenstand.png?raw=true "GitHub Aktueller Zwischenstand")
+![GitHub Zwischenstand](/screenshots/Zwischenstand_gross.png?raw=true "GitHub Aktueller Zwischenstand")
 
 Sobald alle Schritte abgearbeitet und abgeschlossen sind, wird dies mit einen grünen Haken gekennzeichnet.
 ![GitHub Abgeschlossen](/screenshots/Abgeschlossen_rot.png?raw=true "GitHub Abgeschlossen")
