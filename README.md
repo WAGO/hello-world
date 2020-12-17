@@ -4,7 +4,7 @@
 Als Erstes muss ein GitHub Repository angelegt werden, welches die entsprechenden Dateien wie das Dockerfile beinhaltet und die jeweiligen Skripte für das Bauen und Hochladen der Docker Images und der `README.md`.
 
 ## Schritt 2 - Docker Hub Repository anlegen
-Nun muss ein Docker Hub Repository, wo die Docker Images und die README hochgeladen werden können, erstellt werden.
+Dieser Schritt ist optional und es muss nur dann extra ein Docker Hub Repository, wo die Docker Images und die README hochgeladen werden können, erstellt werden, falls dieses **privat** und nicht **public** seien soll. Ansonsten wird beim Hochladen des Docker Images automatisch ein **public** Docker Hub Repository erstellt.
 
 ## Schritt 3 - Dockerfile erstellen
 Nachdem das GitHub und Docker Hub Repository angelegt wurde, muss noch das Dockerfile, welches das Docker Image baut, erstellt werden. Es gibt bei dem Speicherort keine bestimmten Bedingungen. In dieser Anleitung befindet sich das Dockerfile in dem Ordner `build-context`.
