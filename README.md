@@ -10,7 +10,7 @@ Dieser Schritt ist optional und es muss nur dann extra ein Docker Hub Repository
 Nachdem das GitHub und Docker Hub Repository angelegt wurde, muss noch das Dockerfile, welches das Docker Image baut, erstellt werden. Es gibt bei dem Speicherort keine bestimmten Bedingungen. In dieser Anleitung befindet sich das Dockerfile in dem Ordner `build-context`.
 
 ## Schritt 4 - Skript für das Bauen und Hochladen der Docker Images
-Wichtig für diesen Schritt ist, dass dieses Skript (`.yml`) genau unter dem Pfad `.github/workflows` liegt. Der Name ist dabei frei zu wählen. In dieser Anleitung trägt es den Namen `dockerimage.yml`. Dieses Skript kann bis auf ein paar Änderungen, die im Anschluss erläutert werden, in das eigene Repository übernommen werden.
+Wichtig für diesen Schritt ist, dass dieses Skript (`.yml`) genau unter dem Pfad `.github/workflows` liegt. Der Name des Skripts ist dabei frei zu wählen. In dieser Anleitung trägt es den Namen `dockerimage.yml`. Dieses Skript kann bis auf ein paar Änderungen, die im Anschluss erläutert werden, in das eigene Repository übernommen werden.
 ### Zeile 1
 ```yaml
 name: hello-world Beispiel
@@ -88,7 +88,7 @@ Unter **context** muss der jeweilige Ordner, wo die verwendeten Dockerfile Datei
 Hier werden die Docker Images erstellt und auf Docker Hub hochgeladen. Dafür wird jeweils nach dem **docker manifest create** und dem **docker manifest push** der Pfad zum eigenen Repository auf Docker Hub angegeben, gefolgt von einem Doppelpunkt und den tag für das jeweilige Docker Image.
 
 ## Schritt 5 - Skript für das hochladen der README.md
-Genau wie in [Schritt 4](#schritt-4---skript-für-das-bauen-und-hochladen-der-docker-images) muss das Skript, dass die `README.md` von GitHub auf Docker Hub hochlädt, unter dem Pfad `.github/workflows` abgelegt werden. Der Name ist ebenfalls frei zu wählen. In dieser Anleitung trägt es den Namen `dockerhub-description.yml`. Der Aufbau von diesem Skript ähnelt dem aus [Schritt 4](#schritt-4---skript-für-das-bauen-und-hochladen-der-docker-images).
+Genau wie in [Schritt 4](#schritt-4---skript-für-das-bauen-und-hochladen-der-docker-images) muss das Skript, dass die `README.md` von GitHub auf Docker Hub hochlädt, unter dem Pfad `.github/workflows` abgelegt werden. Der Name des Skripts ist ebenfalls frei zu wählen. In dieser Anleitung trägt es den Namen `dockerhub-description.yml`. Der Aufbau von diesem Skript ähnelt dem aus [Schritt 4](#schritt-4---skript-für-das-bauen-und-hochladen-der-docker-images).
 Deswegen müssen auch hier nur einzelne Zeilen bearbeitet werden.
 ### Zeile 1
 ```yaml
