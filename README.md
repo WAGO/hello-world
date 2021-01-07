@@ -54,7 +54,7 @@ build_amd64_image:
     steps:
     ...
 ```
-Der Job **get_date** ist für das ermitteln von dem aktuellen Datum und wird in der Variable `NOW` für die anderen Jobs gespeichert. **get_date** ist jedoch optional. In diesem Tutorial wird es verwendet um den tags der Docker Images das jeweilige Erstellungsdatum hinzuzufügen.
+Der Job **get_date** ist für das ermitteln von dem aktuellen Datum zuständig und wird in der Variable `NOW` für die anderen Jobs gespeichert. **get_date** ist jedoch optional. In diesem Tutorial wird es verwendet um den tags der Docker Images das jeweilige Erstellungsdatum hinzuzufügen.
 Die Jobs **build_arm_image** und **build_amd64_image** sind dafür da um die Images für die beiden unterschiedlichen Prozessorarchitekturen zu bauen. 
 ### Zeile 41-45 und 68-72
 ```yaml
@@ -76,7 +76,7 @@ with:
     tags: |
         wagoautomation/hello-world:arm32v7-${{ steps.global-data.outputs.NOW }}
 ```
-Unter **context** muss der jeweilige Ordner, wo die verwendeten Dockerfile Dateien liegen, angegeben werden. Bei **file** wird das benötigte Dockerfile und unter **platforms** die gewünschte Prozessorarchitektur angegeben. Als nächstes gibt es noch **tags**. Hier muss das verwendete Repository, gefolgt von einem Doppelpunkt und dem gewünschten tag für das Docker Image eingegeben werden. In diesem Fall heißt das Repository `hello-world` liegt unter der Organisation `wagoautomation` und bekommt den tag **arm32v7-** und das entsprechende Datum.
+Unter **context** muss der jeweilige Ordner, wo die verwendeten Dockerfile Dateien liegen, angegeben werden. Bei **file** wird das benötigte Dockerfile und unter **platforms** die gewünschte Prozessorarchitektur angegeben. Als nächstes gibt es noch **tags**. Hier muss das verwendete Repository, gefolgt von einem Doppelpunkt und dem gewünschten tag für das Docker Image angegeben werden. In diesem Fall heißt das Repository `hello-world`, liegt unter der Organisation `wagoautomation` und bekommt den tag **arm32v7-** und das entsprechende Datum.
 ### Zeile 98-102
 ```yaml
 - run: |
